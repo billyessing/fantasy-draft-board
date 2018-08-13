@@ -1,0 +1,32 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" opened="true">
+    <div class="sidebar">
+      <app-timer></app-timer>
+      <app-filter-panel [filterOptions]="filterOptions" (formChange)="filterPlayers($event.query, $event.filterOption)"></app-filter-panel>
+      <div class="players">
+        <hr>
+        <!-- TODO: refactor into its own component -->
+        <span style="float: left; min-width: 50px;">&nbsp;Rank</span>
+        <span style="float: left; min-width: 200px;">Player</span>
+        <span style="float: left; min-width: 50px;">Pos</span>
+        <span style="float: left; min-width: 50px;">Rank</span>
+        <span style="float: left; min-width: 50px; margin-bottom: 10px;">Team</span>
+        <hr>
+        <div *ngFor="let player of filteredPlayers$ | async">
+          <div class="indiv-players" (click)="removePlayer(player)">
+            <span style="float: left; min-width: 50px;">&nbsp;{{ player.overallRank }}.</span>
+            <span style="float: left; min-width: 200px;">{{ player.name }}</span>
+            <span style="float: left; min-width: 50px;">{{ player.position }}</span>
+            <span style="float: left; min-width: 50px;">{{ player.positionRank }}</span>
+            <span style="float: left; min-width: 50px;">{{ player.team }}</span>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>    
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
+  </mat-sidenav-content>
+</mat-sidenav-container>

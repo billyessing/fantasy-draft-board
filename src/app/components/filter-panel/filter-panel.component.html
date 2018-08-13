@@ -1,0 +1,27 @@
+<div class="filter-panel">
+  <form [formGroup]="searchForm">
+    <mat-form-field>
+      <input matInput type="text" class="search" type="search" placeholder="Player search..." formControlName="query"
+        aria-label="Search">
+    </mat-form-field>
+
+    <!-- Options -->
+    <div class="form-group">
+      <div class="btn-group">
+        <!-- <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Filter by: {{ searchForm.value.filterOption.label }}
+        </button> -->
+        <!-- <div class="dropdown-menu"> -->
+        <div class="filter-positions">
+          <a 
+            class="positions" 
+            *ngFor="let filterOption of filterOptions" 
+            (click)="searchForm.controls['filterOption'].setValue(filterOption)">{{ filterOption.label }}
+          </a>
+        </div>
+
+        <!-- </div> -->
+      </div>
+    </div>
+  </form>
+</div>

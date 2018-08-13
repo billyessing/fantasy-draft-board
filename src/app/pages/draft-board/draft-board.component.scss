@@ -1,0 +1,41 @@
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.example-radio-group {
+  display: block;
+  border: 1px solid #555;
+  margin: 20px;
+  padding: 10px;
+}
+
+.mat-sidenav {
+  background-color: rgba(213, 10, 10, 1);
+  color: white;
+  font-weight: thick;
+}
+
+.sidebar {
+  width: 400px;
+}
+
+.players {
+  padding-top: 15px;
+}
+
+.indiv-players {
+  // margin-bottom:
+  padding-top: 8px;
+  padding-bottom: 8px;
+
+  &:hover {
+    background-color: rgba(1, 51, 105, 1);
+    cursor: pointer;
+  }
+}
+
+

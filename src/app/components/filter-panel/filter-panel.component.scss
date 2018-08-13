@@ -1,0 +1,34 @@
+.filter-panel {
+    color: white;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    background-color: rgba(213, 10, 10, 1);
+    padding-top: 10px;
+    padding-bottom: 28px;
+    // variable depending on height of timer
+    top: 248px;
+}
+
+mat-form-field {
+    width: 88%;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.positions {
+    padding-left: 15px;
+    padding-right: 15px;
+
+    &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    &:active {
+        text-decoration: underline;
+    }
+}
+
+.target {
+    text-decoration: underline;
+}

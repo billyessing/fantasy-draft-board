@@ -1,0 +1,8 @@
+<div class="timer">
+  <span *ngIf="!timesUp"> {{ timeRemaining }} </span>
+  <span *ngIf="timesUp"> 00:00 </span>
+  <button *ngIf="!isRunning" mat-button (click)="startTimer()">Start</button>
+  <button *ngIf="isRunning" mat-button (click)="pauseTimer()">Pause</button>
+  <button mat-button (click)="resetTimer()">Reset</button>
+  <hr style="background-color: white; margin-right: 15px;">
+</div>
