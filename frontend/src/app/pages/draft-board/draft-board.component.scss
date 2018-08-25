@@ -17,6 +17,7 @@
   background-color: rgba(213, 10, 10, 1);
   color: white;
   font-weight: thick;
+  border-right: 1px white solid;
 }
 
 .sidebar {
@@ -34,6 +35,19 @@
 
   &:hover {
     background-color: rgba(1, 51, 105, 1);
+    cursor: pointer;
+  }
+}
+
+.header {
+  text-align: center;
+  color: white;
+  background-color: rgba(1, 51, 105, 1);
+  font-size: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  &:hover {
     cursor: pointer;
   }
 }

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 // forms
 import {
@@ -46,17 +47,21 @@ import { AppComponent } from './app.component';
 import { DraftBoardComponent } from './pages/draft-board/draft-board.component';
 import { FilterPanelComponent } from './components/filter-panel/filter-panel.component';
 import { TimerComponent } from './components/timer/timer.component';
+import { TeamComponent } from './components/team/team.component';
+import { DataService } from './services/data.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     DraftBoardComponent,
     FilterPanelComponent,
-    TimerComponent
+    TimerComponent,
+    TeamComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
@@ -91,7 +96,7 @@ import { TimerComponent } from './components/timer/timer.component';
     MatSortModule,
     MatPaginatorModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

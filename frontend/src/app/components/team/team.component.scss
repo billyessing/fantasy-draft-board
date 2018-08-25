@@ -1,0 +1,28 @@
+.teams {
+    display: inline-block;
+    width: 32.9%;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-left: 2px;
+    margin-right: 2px;
+    // height: 55%;
+    // margin-bottom: 40px;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+mat-form-field {
+    width: 90%;
+    margin-bottom: -28px;
+}
+
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 50%;
+}

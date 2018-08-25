@@ -1,0 +1,49 @@
+<div class="teams" *ngFor="let team of teams">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{ team.owner }}</mat-card-title>
+      <!-- <mat-card-subtitle>{{ team.owner }}</mat-card-subtitle> -->
+    </mat-card-header>
+    <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+    <br><hr>
+    <div class="row">
+      <div class="column">
+        <p *ngFor="let pos of positions" style="width: 10px;"><b>{{ pos }}</b>&nbsp;&nbsp;</p>
+      </div>
+      <div class="column">
+        <p *ngIf="team.players.qb">{{ team.players.qb }}</p>
+        <p *ngIf="!team.players.qb"> &nbsp; </p>
+        <p *ngIf="team.players.rb1">{{ team.players.rb1 }}</p>
+        <p *ngIf="!team.players.rb1"> &nbsp; </p>
+        <p *ngIf="team.players.rb2">{{ team.players.rb2 }}</p>
+        <p *ngIf="!team.players.rb2"> &nbsp; </p>
+        <p *ngIf="team.players.wr1">{{ team.players.wr1 }}</p>
+        <p *ngIf="!team.players.wr1"> &nbsp; </p>
+        <p *ngIf="team.players.wr2">{{ team.players.wr2 }}</p>
+        <p *ngIf="!team.players.wr2"> &nbsp; </p>
+        <p *ngIf="team.players.te">{{ team.players.te }}</p>
+        <p *ngIf="!team.players.te"> &nbsp; </p>
+        <p *ngIf="team.players.flex">{{ team.players.flex }}</p>
+        <p *ngIf="!team.players.flex"> &nbsp; </p>
+        <p *ngIf="team.players.flex">{{ team.players.k }}</p>
+        <p *ngIf="!team.players.k"> &nbsp; </p>
+        <p *ngIf="team.players.flex">{{ team.players.dst }}</p>
+        <p *ngIf="!team.players.dst"> &nbsp; </p>
+        <p *ngIf="team.players.flex">{{ team.players.b1 }}</p>
+        <p *ngIf="!team.players.b1"> &nbsp; </p>
+        <p *ngIf="team.players.flex">{{ team.players.b2 }}</p>
+        <p *ngIf="!team.players.b2"> &nbsp; </p>
+        <p *ngIf="team.players.flex">{{ team.players.b3 }}</p>
+        <p *ngIf="!team.players.b3"> &nbsp; </p>
+        <p *ngIf="team.players.flex">{{ team.players.b4 }}</p>
+        <p *ngIf="!team.players.b4"> &nbsp; </p>
+        <p *ngIf="team.players.flex">{{ team.players.b5 }}</p>
+        <p *ngIf="!team.players.b5"> &nbsp; </p>
+      </div>
+      
+    </div>
+
+
+  </mat-card>
+</div>

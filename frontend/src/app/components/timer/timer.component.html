@@ -4,5 +4,7 @@
   <button *ngIf="!isRunning" mat-button (click)="startTimer()">Start</button>
   <button *ngIf="isRunning" mat-button (click)="pauseTimer()">Pause</button>
   <button mat-button (click)="resetTimer()">Reset</button>
-  <hr style="background-color: white; margin-right: 15px;">
+  <mat-form-field color="warn">
+    <input matInput placeholder="Team">
+  </mat-form-field>
 </div>

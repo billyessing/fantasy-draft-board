@@ -13,12 +13,12 @@
         <span style="float: left; min-width: 50px; margin-bottom: 10px;">Team</span>
         <hr>
         <div *ngFor="let player of filteredPlayers$ | async">
-          <div class="indiv-players" (click)="removePlayer(player)">
-            <span style="float: left; min-width: 50px;">&nbsp;{{ player.overallRank }}.</span>
+          <div class="indiv-players" (click)="addPlayer(player)">
+            <span style="float: left; min-width: 50px;">&nbsp;{{ player.rank }}.</span>
             <span style="float: left; min-width: 200px;">{{ player.name }}</span>
-            <span style="float: left; min-width: 50px;">{{ player.position }}</span>
-            <span style="float: left; min-width: 50px;">{{ player.positionRank }}</span>
-            <span style="float: left; min-width: 50px;">{{ player.team }}</span>
+            <span style="float: left; min-width: 50px;">{{ player.pos }}</span>
+            <span style="float: left; min-width: 50px;">{{ player.rank_pos }}</span>
+            <!-- <span style="float: left; min-width: 50px;">{{ player.team }}</span> -->
             <br>
           </div>
         </div>
@@ -27,6 +27,9 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
+    <div class="header" (click)="sidenav.toggle()">
+      League of Hard Knox: Draft Night 2018
+    </div>
+    <app-team></app-team>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -23,7 +23,7 @@ export class PlayerFilterService {
       if (item.hasOwnProperty(key)) {
         
         // third check automatically filters by position
-        if (!includeProps || includeProps.indexOf(key) !== -1 || item['position'] == includeProps[0]) {
+        if (!includeProps || includeProps.indexOf(key) !== -1 || item['pos'] == includeProps[0]) {
           const val = item[key];
           
           if (val != null && val.toString().toLowerCase().indexOf(lowerQuery) !== -1) {
