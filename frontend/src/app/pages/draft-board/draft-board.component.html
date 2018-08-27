@@ -1,24 +1,37 @@
 <mat-sidenav-container class="example-container">
   <mat-sidenav #sidenav mode="side" opened="true">
     <div class="sidebar">
-      <app-timer></app-timer>
-      <app-filter-panel [filterOptions]="filterOptions" (formChange)="filterPlayers($event.query, $event.filterOption)"></app-filter-panel>
+      <div class="sticky">
+        <app-timer></app-timer>
+        <div class="drafting-team">
+          <mat-form-field>
+            <mat-select placeholder="Team" [(ngModel)]="currTeam">
+              <mat-option *ngFor="let team of teams$ | async" [value]="team">
+                {{ team.owner }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <app-filter-panel [filterOptions]="filterOptions" (formChange)="filterPlayers($event.query, $event.filterOption)"></app-filter-panel>
+      </div>
+      
       <div class="players">
         <hr>
         <!-- TODO: refactor into its own component -->
         <span style="float: left; min-width: 50px;">&nbsp;Rank</span>
         <span style="float: left; min-width: 200px;">Player</span>
+        <span style="float: left; min-width: 50px;">Team</span>
         <span style="float: left; min-width: 50px;">Pos</span>
-        <span style="float: left; min-width: 50px;">Rank</span>
-        <span style="float: left; min-width: 50px; margin-bottom: 10px;">Team</span>
+        <span style="float: left; min-width: 50px; margin-bottom: 10px;">Rank</span>
         <hr>
+        <div><mat-spinner *ngIf="showSpinner"></mat-spinner> </div>
         <div *ngFor="let player of filteredPlayers$ | async">
           <div class="indiv-players" (click)="addPlayer(player)">
             <span style="float: left; min-width: 50px;">&nbsp;{{ player.rank }}.</span>
             <span style="float: left; min-width: 200px;">{{ player.name }}</span>
+            <span style="float: left; min-width: 50px;">{{ player.team }}</span>
             <span style="float: left; min-width: 50px;">{{ player.pos }}</span>
             <span style="float: left; min-width: 50px;">{{ player.rank_pos }}</span>
-            <!-- <span style="float: left; min-width: 50px;">{{ player.team }}</span> -->
             <br>
           </div>
         </div>

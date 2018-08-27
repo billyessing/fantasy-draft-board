@@ -1,18 +1,12 @@
-// .timer {
-//     // margin-top: 30px;
-//     padding-left: 15px;
-//     font-size: 70px;
-// }
-
 .timer {
     font-size: 70px;
     background-color: rgba(1, 51, 105, 1);
     padding-left: 15px;
     padding-top: 40px;
-    // padding-bottom: 10px;
-    position: -webkit-sticky; /* Safari */
-    position: sticky;
-    top: 0;
+    padding-bottom: 10px;
+    // position: -webkit-sticky; /* Safari */
+    // position: sticky;
+    // top: 0;
 }
 
 .mat-form-field {

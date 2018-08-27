@@ -18,6 +18,9 @@ import { DataService } from '../../services/data.service';
 })
 export class DraftBoardComponent implements OnInit {
 
+  teams$: Observable<TeamOwnerModel[]>
+  currTeam: TeamOwnerModel;
+
   players$: Observable<PlayerModel[]>;
   filteredPlayers$: Observable<PlayerModel[]>;
 
@@ -30,10 +33,8 @@ export class DraftBoardComponent implements OnInit {
     { props: ['WR'], label: 'WR' },
     { props: ['TE'], label: 'TE' },
     { props: ['K'], label: 'K' },
-    { props: ['D/ST'], label: 'D/ST' }
+    { props: ['DST'], label: 'D/ST' }
   ]
-
-  player: PlayerModel;
 
   constructor(
     private dataService: DataService,
@@ -41,8 +42,7 @@ export class DraftBoardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.dataService.addPlayerNotif.subscribe(player => this.player = player)
-
+    this.teams$ = this.dataService.getTeams();
     this.players$ = this.dataService.getPlayers('', '');
     this.filteredPlayers$ = this.players$;
   }
@@ -60,28 +60,26 @@ export class DraftBoardComponent implements OnInit {
     let draftedPlayer = player;
     
     delete draftedPlayer['id']
-    draftedPlayer['team_owner'] = "Billy";
+    draftedPlayer['team_owner'] = this.currTeam.owner;
 
     this.dataService.deletePlayer(id)
-      .subscribe(res => {
-        this.filteredPlayers$ = this.dataService.getPlayers('', '');
-        console.log(res)
-      },
-        console.error
-    )
+      .subscribe(() =>
+        this.filteredPlayers$ = this.dataService.getPlayers('', '')
+      ),
+      console.error
       
     this.dataService.savePlayer(draftedPlayer)
-      .subscribe(res => {
-        console.log(res)
-      },
+      .subscribe(),
       console.error
-    )
 
-    this.newMessage(draftedPlayer)
+    this.notifyTeams(draftedPlayer)
   }
 
-  newMessage(draftedPlayer: PlayerModel) {
-    this.dataService.playerAddedNotif(draftedPlayer)
+  notifyTeams(draftedPlayer: PlayerModel) {
+    this.dataService.playerAddedNotif({
+      team: this.currTeam,
+      player: draftedPlayer
+    })
   }
 
 }

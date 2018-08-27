@@ -5,13 +5,25 @@
     margin-bottom: 2px;
     margin-left: 2px;
     margin-right: 2px;
-    // height: 55%;
-    // margin-bottom: 40px;
+
 }
 
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
+.spinner {
+    display: table;
+    margin: 0 auto;
+    margin-top: 20%;
+}
+
+.spinner-text {
+    display: table;
+    margin: 0 auto;
+}
+
+img {
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    border: 1px solid black;
 }
 
 mat-form-field {

@@ -6,6 +6,8 @@ import { toArray } from 'rxjs/operators';
 import { PlayerFilterService } from '../../services/player-filter.service';
 import { PlayerModel } from '../../models/player.model';
 import { TeamOwnerModel } from '../../models/team-owner.model';
+import { TeamPositionsModel } from '../../models/team-positions.model';
+
 import { FilterOption } from '../../models/filter-group.model';
 import { ThrowStmt } from '@angular/compiler';
 import { DataService } from '../../services/data.service';
@@ -18,7 +20,10 @@ import { DataService } from '../../services/data.service';
 export class TeamComponent implements OnInit {
 
   teams: any[] = [];
-  player: PlayerModel;
+  currPlayer: PlayerModel = null;
+  currTeamOwner: TeamOwnerModel = null;
+
+  showSpinner: boolean = false;
 
   positions = [
     'QB', 
@@ -27,8 +32,11 @@ export class TeamComponent implements OnInit {
     'TE',
     'FLEX',
     'K',
-    'D/ST',
-    'Bench', 'Bench', 
+    'D/ST'
+  ]
+
+  bench = [
+    'Bench', 'Bench',
     'Bench', 'Bench', 'Bench'
   ]
 
@@ -39,8 +47,13 @@ export class TeamComponent implements OnInit {
   ngOnInit() {
     this.dataService.addPlayerNotif
       .subscribe(player => {
+        this.currPlayer = player.player;
+        this.currTeamOwner = player.team;
+
+        this.showSpinner = true;
         this.teams = []
         this.getTeams();
+        setTimeout(() => this.showSpinner = false, 2500)
       })
 
   }
@@ -49,7 +62,7 @@ export class TeamComponent implements OnInit {
     this.dataService.getTeams()
       .subscribe(teams => {
         teams.forEach(team => {
-          this.getPlayers(team.name);
+          this.getPlayers(team.owner);
         })
       })
   }
@@ -67,22 +80,22 @@ export class TeamComponent implements OnInit {
   }
 
   fillPositions(players) {
-    let positions = {
-      'qb': null,
-      'rb1': null, 'rb2': null,
-      'wr1': null, 'wr2': null,
-      'te': null,
-      'flex': null,
-      'k': null,
-      'dst': null,
-      'b1': null, 'b2': null,
-      'b3': null, 'b4': null, 'b5': null,
-    }
+    let positions: TeamPositionsModel = {
+      qb: null,
+      rb1: null, rb2: null,
+      wr1: null, wr2: null,
+      te: null,
+      flex: null,
+      k: null,
+      dst: null,
+      b1: null, b2: null,
+      b3: null, b4: null,
+      b5: null,
+    };
 
     let rbCounter = 0
     let wrCounter = 0
 
-    // disgusting code... couldn't figure out any other logic 
     players.forEach(player => {
       if (player.pos == 'QB' && positions.qb == null) {
         positions.qb = player.name
@@ -122,4 +135,7 @@ export class TeamComponent implements OnInit {
     return positions;
   }
 
+  getTeamImage(teamOwner: string) {
+    return './../../assets/team-avatars/' + teamOwner + '.jpg'
+  }
 }

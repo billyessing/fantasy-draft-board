@@ -11,15 +11,21 @@ import { TeamOwnerModel } from './../models/team-owner.model';
 @Injectable()
 export class DataService {
 
-  player = new PlayerModel('', '', null, null, '')
-  playerSource = new BehaviorSubject(this.player);
+  player = new PlayerModel('', '', null, null, '', '')
+  team = new TeamOwnerModel('', '', null);
+  currPick = {
+    team: this.team,
+    player: this.player
+  }
+
+  playerSource = new BehaviorSubject(this.currPick);
   addPlayerNotif = this.playerSource.asObservable();
 
   constructor(private http: HttpClient) {
 
   }
 
-  playerAddedNotif(player: PlayerModel) {
+  playerAddedNotif(player: any) {
     this.playerSource.next(player)
   }
 
@@ -57,7 +63,6 @@ export class DataService {
     return this.http
       .delete<any[]>(`${API_URL}/players/${playerId}`)
   }
-
 
   private static _handleError(err: HttpErrorResponse | any) {
     return throwError(err.message || 'Error: Unable to complete request.');

@@ -4,6 +4,7 @@ export class PlayerModel {
     public pos: string,
     public rank: number,
     public rankPos: number,
+    public team: string,
     public owner: string,
     public _id?: number
   ) { }
