@@ -6,8 +6,6 @@ import { API_URL } from './../env';
 import { PlayerModel } from './../models/player.model';
 import { TeamOwnerModel } from './../models/team-owner.model';
 
-// import * as Auth0 from 'auth0-web';
-
 @Injectable()
 export class DataService {
 
@@ -59,11 +57,13 @@ export class DataService {
       .post<any[]>(`${API_URL}/teams`, team);
   } 
 
+  // DELETE
   deletePlayer(playerId: number): Observable<any[]> {
     return this.http
       .delete<any[]>(`${API_URL}/players/${playerId}`)
   }
 
+  // error handling
   private static _handleError(err: HttpErrorResponse | any) {
     return throwError(err.message || 'Error: Unable to complete request.');
   }

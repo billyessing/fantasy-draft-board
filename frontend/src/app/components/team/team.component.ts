@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PlayerModel } from '../../models/player.model';
 import { TeamOwnerModel } from '../../models/team-owner.model';
 import { TeamPositionsModel } from '../../models/team-positions.model';
@@ -132,7 +132,6 @@ export class TeamComponent implements OnInit {
       } else if (positions.b5 == null) {
         positions.b5 = player
       }
-
     })
 
     return positions;

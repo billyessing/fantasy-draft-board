@@ -90,18 +90,14 @@ export class DraftBoardComponent implements OnInit {
   }
 
   notifyTeams(draftedPlayer: PlayerModel) {
-    // console.log(this.currTeam);
-    // console.log(draftedPlayer);
     this.dataService.playerAddedNotif({
       team: this.currTeam,
       player: draftedPlayer
     })
 
     if (this.pickCounter % 12 == 0) {
-      // this.pickCounter = 1;
       this.roundCounter++;
     }
-
     this.pickCounter++;
   }
 
