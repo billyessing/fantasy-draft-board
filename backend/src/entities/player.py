@@ -16,13 +16,17 @@ class Player(Base):
     pos = Column(String)
     rank = Column(Integer)
     rank_pos = Column(Integer)
+    team = Column(String)
+    bye = Column(Integer)
     team_owner = Column(String)
 
-    def __init__(self, name, pos, rank, rank_pos, team_owner):
-        self.name = name
-        self.pos = pos
+    def __init__(self, rank, name, team, pos, rank_pos, bye, team_owner):
         self.rank = rank
+        self.name = name
+        self.team = team
+        self.pos = pos
         self.rank_pos = rank_pos
+        self.bye = bye
         self.team_owner = team_owner
 
 class PlayerSchema(Schema):
@@ -31,5 +35,7 @@ class PlayerSchema(Schema):
     pos = fields.Str()
     rank = fields.Number()
     rank_pos = fields.Number()
+    team = fields.Str()
+    bye = fields.Number()
     team_owner = fields.Str()
 

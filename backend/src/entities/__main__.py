@@ -62,19 +62,19 @@ def get_teams():
 
 @app.route('/players', methods=['POST'])
 def add_player():
-    # mount player object
+    # mount Player object
     posted_player = PlayerSchema()\
         .load(request.get_json())
 
     player = Player(**posted_player.data)
 
-    # persist player
+    # persist Player
     session = session_factory()
 
     session.add(player)
     session.commit()
 
-    # return created player
+    # return created Player
     new_player = PlayerSchema().dump(player).data
     session.close()
     return jsonify(new_player), 201
@@ -82,19 +82,19 @@ def add_player():
 
 @app.route('/teams', methods=['POST'])
 def add_team_owner():
-    # mount player object
+    # mount Player object
     posted_team_owner = TeamOwnerSchema()\
         .load(request.get_json())
 
     team_owner = TeamOwner(**posted_team_owner.data)
 
-    # persist player
+    # persist Player
     session = session_factory()
 
     session.add(team_owner)
     session.commit()
 
-    # return created player
+    # return created Player
     new_team_owner = TeamOwnerSchema().dump(team_owner).data
     session.close()
     return jsonify(new_team_owner), 201
@@ -134,3 +134,4 @@ def query_teams(table):
 
 if __name__ == "__main__":
     populate_database()
+    print("hemlo")
