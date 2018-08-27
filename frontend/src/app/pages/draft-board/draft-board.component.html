@@ -11,6 +11,8 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
+          <span>Round {{ roundCounter }}</span>
+          <button mat-button (click)="autoPick()">Auto Pick</button>
         </div>
         <app-filter-panel [filterOptions]="filterOptions" (formChange)="filterPlayers($event.query, $event.filterOption)"></app-filter-panel>
       </div>
@@ -41,7 +43,7 @@
 
   <mat-sidenav-content>
     <div class="header" (click)="sidenav.toggle()">
-      League of Hard Knox: Draft Night 2018
+      <img src="../../assets/images/banner.png">
     </div>
     <app-team></app-team>
   </mat-sidenav-content>

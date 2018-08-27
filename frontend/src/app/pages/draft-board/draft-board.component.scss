@@ -29,7 +29,6 @@
 }
 
 .indiv-players {
-  // margin-bottom:
   padding-top: 8px;
   padding-bottom: 8px;
 
@@ -46,6 +45,7 @@
   font-size: 50px;
   padding-top: 20px;
   padding-bottom: 20px;
+  height: 94px;
 
   &:hover {
     cursor: pointer;
@@ -56,15 +56,20 @@
   background-color: rgba(213, 10, 10, 1);
   font-size: 24px;
   padding-top: 30px;
-  width: 100%;
-  padding-left: 15px;
-  padding-right: 15px;
 
   mat-form-field {
+    margin-left: 15px;
     width: 88%;
   }
-}
 
+  span {
+    margin-left: 15px;
+  }
+
+  button {
+    margin-left: 45%;
+  }
+}
 
 .sticky {
   top: 0;

@@ -1,15 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Observable, Subscription, from, of } from 'rxjs';
-import { toArray } from 'rxjs/operators';
-import { PlayerFilterService } from '../../services/player-filter.service';
+import { Observable } from 'rxjs';
 import { PlayerModel } from '../../models/player.model';
 import { TeamOwnerModel } from '../../models/team-owner.model';
 import { FilterOption } from '../../models/filter-group.model';
-import { ThrowStmt } from '@angular/compiler';
-
 import { DataService } from '../../services/data.service';
+import { PlayerFilterService } from '../../services/player-filter.service';
 
 @Component({
   selector: 'app-draft-board',
@@ -24,6 +20,8 @@ export class DraftBoardComponent implements OnInit {
   players$: Observable<PlayerModel[]>;
   filteredPlayers$: Observable<PlayerModel[]>;
 
+  pickCounter: number = 1;
+  roundCounter: number = 1;
   mode = new FormControl('side');
 
   public filterOptions: FilterOption[] = [
@@ -55,10 +53,26 @@ export class DraftBoardComponent implements OnInit {
     );
   }
 
+  autoPick() {
+    this.dataService.getPlayers('', '')
+      .subscribe(players => {
+        this.addPlayer(players[0])
+      })
+  }
+
   addPlayer(player: PlayerModel) {
+    if (!this.currTeam) {
+      console.log("Select team to add player...")
+      return;
+    }
+
+    this.updateDatabase(player);
+  }
+
+  updateDatabase(player: PlayerModel) {
     let id = player['id'];
     let draftedPlayer = player;
-    
+
     delete draftedPlayer['id']
     draftedPlayer['team_owner'] = this.currTeam.owner;
 
@@ -67,7 +81,7 @@ export class DraftBoardComponent implements OnInit {
         this.filteredPlayers$ = this.dataService.getPlayers('', '')
       ),
       console.error
-      
+
     this.dataService.savePlayer(draftedPlayer)
       .subscribe(),
       console.error
@@ -76,10 +90,19 @@ export class DraftBoardComponent implements OnInit {
   }
 
   notifyTeams(draftedPlayer: PlayerModel) {
+    // console.log(this.currTeam);
+    // console.log(draftedPlayer);
     this.dataService.playerAddedNotif({
       team: this.currTeam,
       player: draftedPlayer
     })
+
+    if (this.pickCounter % 12 == 0) {
+      // this.pickCounter = 1;
+      this.roundCounter++;
+    }
+
+    this.pickCounter++;
   }
 
 }

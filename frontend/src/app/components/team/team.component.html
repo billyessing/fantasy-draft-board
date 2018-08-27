@@ -1,17 +1,18 @@
 <ng-container *ngIf="showSpinner">
-  <mat-spinner class="spinner"></mat-spinner>
+  <mat-spinner class="spinner" color="warn"></mat-spinner>
   <br><br>
   <!-- <hr style="width:15%"><br> -->
-  <span class="spinner-text">Adding #{{ currPlayer.pos }} {{ currPlayer.name }} to {{ currTeamOwner.owner }}'s team... </span>
+  <span *ngIf="currPlayer.name" class="spinner-text">Adding #{{ currPlayer.pos }} {{ currPlayer.name }} to {{ currTeamOwner.name }}'s team... </span>
+  <span *ngIf="!currPlayer.name" class="spinner-text">Initializing database... </span>
 </ng-container>
 
 <ng-container *ngIf="!showSpinner">
 <div class="teams" *ngFor="let team of teams">
   <mat-card class="example-card">
     <mat-card-header>
-      <div mat-card-avatar style="margin-right: 40px;"><img [src]="getTeamImage(team.owner)"></div>
-      <mat-card-title>{{ team.name }}</mat-card-title>
-      <mat-card-subtitle>{{ team.owner }}</mat-card-subtitle>
+      <div mat-card-avatar style="margin-right: 40px;"><img [src]="getTeamImage(team.teamOwner.owner)"></div>
+      <mat-card-title>{{ team.teamOwner.name }}</mat-card-title>
+      <mat-card-subtitle>{{ team.teamOwner.owner }}</mat-card-subtitle>
     </mat-card-header>
     <br><br>
     <!-- <hr> -->
@@ -24,37 +25,37 @@
           <b>{{ ben }}</b>&nbsp;&nbsp;</p>
       </div>
       <div>
-        <p *ngIf="team.players.qb">{{ team.players.qb }}</p>
-        <p *ngIf="!team.players.qb"> &nbsp; </p>
-        <p *ngIf="team.players.rb1">{{ team.players.rb1 }}</p>
-        <p *ngIf="!team.players.rb1"> &nbsp; </p>
-        <p *ngIf="team.players.rb2">{{ team.players.rb2 }}</p>
-        <p *ngIf="!team.players.rb2"> &nbsp; </p>
-        <p *ngIf="team.players.wr1">{{ team.players.wr1 }}</p>
-        <p *ngIf="!team.players.wr1"> &nbsp; </p>
-        <p *ngIf="team.players.wr2">{{ team.players.wr2 }}</p>
-        <p *ngIf="!team.players.wr2"> &nbsp; </p>
-        <p *ngIf="team.players.te">{{ team.players.te }}</p>
-        <p *ngIf="!team.players.te"> &nbsp; </p>
-        <p *ngIf="team.players.flex">{{ team.players.flex }}</p>
-        <p *ngIf="!team.players.flex"> &nbsp; </p>
-        <p *ngIf="team.players.flex">{{ team.players.k }}</p>
-        <p *ngIf="!team.players.k"> &nbsp; </p>
-        <p *ngIf="team.players.flex">{{ team.players.dst }}</p>
-        <p *ngIf="!team.players.dst"> &nbsp; </p>
+        <p *ngIf="team.players.qb">{{ team.players.qb.name }} - ({{ team.players.qb.bye }})</p>
+        <p *ngIf="!team.players.qb" style="opacity: 0.3;"> Empty </p>
+        <p *ngIf="team.players.rb1">{{ team.players.rb1.name }} - ({{ team.players.rb1.bye }})</p>
+        <p *ngIf="!team.players.rb1" style="opacity: 0.3;"> Empty </p>
+        <p *ngIf="team.players.rb2">{{ team.players.rb2.name }} - ({{ team.players.rb2.bye }})</p>
+        <p *ngIf="!team.players.rb2" style="opacity: 0.3;"> Empty </p>
+        <p *ngIf="team.players.wr1">{{ team.players.wr1.name }} - ({{ team.players.wr1.bye }})</p>
+        <p *ngIf="!team.players.wr1" style="opacity: 0.3;"> Empty </p>
+        <p *ngIf="team.players.wr2">{{ team.players.wr2.name }} - ({{ team.players.wr2.bye }})</p>
+        <p *ngIf="!team.players.wr2" style="opacity: 0.3;"> Empty </p>
+        <p *ngIf="team.players.te">{{ team.players.te.name }} - ({{ team.players.te.bye }})</p>
+        <p *ngIf="!team.players.te" style="opacity: 0.3;"> Empty </p>
+        <p *ngIf="team.players.flex">{{ team.players.flex.name }} - ({{ team.players.flex.bye }})</p>
+        <p *ngIf="!team.players.flex" style="opacity: 0.3;"> Empty </p>
+        <p *ngIf="team.players.k">{{ team.players.k.name }} - ({{ team.players.k.bye }})</p>
+        <p *ngIf="!team.players.k" style="opacity: 0.3;"> Empty </p>
+        <p *ngIf="team.players.dst">{{ team.players.dst.name }} - ({{ team.players.dst.bye }})</p>
+        <p *ngIf="!team.players.dst" style="opacity: 0.3;"> Empty </p>
 
         <hr>
 
-        <p *ngIf="team.players.flex">{{ team.players.b1 }}</p>
-        <p *ngIf="!team.players.b1"> &nbsp; </p>
-        <p *ngIf="team.players.flex">{{ team.players.b2 }}</p>
-        <p *ngIf="!team.players.b2"> &nbsp; </p>
-        <p *ngIf="team.players.flex">{{ team.players.b3 }}</p>
-        <p *ngIf="!team.players.b3"> &nbsp; </p>
-        <p *ngIf="team.players.flex">{{ team.players.b4 }}</p>
-        <p *ngIf="!team.players.b4"> &nbsp; </p>
-        <p *ngIf="team.players.flex">{{ team.players.b5 }}</p>
-        <p *ngIf="!team.players.b5"> &nbsp; </p>
+        <p *ngIf="team.players.b1">{{ team.players.b1.name }} - ({{ team.players.b1.bye }})</p>
+        <p *ngIf="!team.players.b1" style="opacity: 0.3;"> Empty </p>
+        <p *ngIf="team.players.b2">{{ team.players.b2.name }} - ({{ team.players.b2.bye }})</p>
+        <p *ngIf="!team.players.b2" style="opacity: 0.3;"> Empty </p>
+        <p *ngIf="team.players.b3">{{ team.players.b3.name }} - ({{ team.players.b3.bye }})</p>
+        <p *ngIf="!team.players.b3" style="opacity: 0.3;"> Empty </p>
+        <p *ngIf="team.players.b4">{{ team.players.b4.name }} - ({{ team.players.b4.bye }})</p>
+        <p *ngIf="!team.players.b4" style="opacity: 0.3;"> Empty </p>
+        <p *ngIf="team.players.b5">{{ team.players.b5.name }} - ({{ team.players.b5.bye }})</p>
+        <p *ngIf="!team.players.b5" style="opacity: 0.3;"> Empty </p>
       </div>
     </div>
   </mat-card>
