@@ -8,18 +8,18 @@ def populate_database():
     session = session_factory()
 
     teams = [
-        TeamOwner("Billy Essing", "", 1),
-        TeamOwner("Justin Stals", "", 2),
-        TeamOwner("Hayden Leaver", "", 3),
-        TeamOwner("Robbie Christie", "", 4),
-        TeamOwner("Angus Boulton", "", 5),
-        TeamOwner("Jack Blamey", "", 6),
-        TeamOwner("Michael Ainsworth", "", 7),
-        TeamOwner("Nelson Ebbeck", "", 8),
-        TeamOwner("Phoenix Goodman", "", 9),
-        TeamOwner("William Hennessy", "", 10),
-        TeamOwner("Nicola Ferrero", "", 11),
-        TeamOwner("Daniel Swinton", "", 12)
+        TeamOwner("Billy Essing", "ATL Trap God", 1),
+        TeamOwner("Justin Stals", "King JuJU", 2),
+        TeamOwner("Hayden Leaver", "royalfam", 3),
+        TeamOwner("Robbie Christie", "Taylor Made", 4),
+        TeamOwner("Angus Boulton", "Mike Vick", 5),
+        TeamOwner("Fraser Bleach", "Fridges", 6),
+        TeamOwner("Michael Ainsworth", "Westballs", 7),
+        TeamOwner("Nelson Ebbeck", "Matty Ice", 8),
+        TeamOwner("Phoenix Goodman", "49er G4ng", 9),
+        TeamOwner("William Hennessy", "mushTDs", 10),
+        TeamOwner("Nicola Ferrero", "YungSavagez", 11),
+        TeamOwner("Daniel Swinton", "The Vet", 12)
     ]
 
     players = [
