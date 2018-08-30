@@ -23,7 +23,7 @@ def populate_database():
     ]
 
     players = [
-        Player(1,"Todd Gurley","LAR","RB",1,12,None),
+        Player(1,"Todd Gurley","LAR","RB",1,12,"Billy Essing"),
         Player(2,"LeVeon Bell","PIT","RB",2,7,None),
         Player(3,"David Johnson","ARI","RB",3,9,None),
         Player(4,"Ezekiel Elliott","DAL","RB",4,8,None),
