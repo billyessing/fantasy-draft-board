@@ -56,7 +56,11 @@ export class DraftBoardComponent implements OnInit {
   autoPick() {
     this.dataService.getPlayers('', '')
       .subscribe(players => {
-        this.addPlayer(players[0])
+        // this.addPlayer(players[0])
+        let topFive = players.slice(0, 5);
+        let rand = Math.floor(Math.random() * 6);
+
+        this.addPlayer(topFive[rand]);
       })
   }
 

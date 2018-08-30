@@ -12,6 +12,7 @@ export class TimerComponent implements OnInit {
   interval;
   timesUp = false;
   isRunning = false;
+  audio: HTMLAudioElement;
 
   constructor() { }
 
@@ -19,16 +20,28 @@ export class TimerComponent implements OnInit {
 
   }
 
+  playAudio() {
+    this.audio = new Audio();
+
+    this.audio.src = "./../../assets/audio/draft-round.mp3";
+    this.audio.load();
+    this.audio.play();
+  }
+
   startTimer() {
     if (!this.isRunning) {
       this.clear(this.interval);
       this.timer(this.duration); 
     }
+
+    this.playAudio();
   }
 
   pauseTimer() {
     this.isRunning = false;
     this.clear(this.interval);
+
+    this.audio.pause();
   }
 
   resetTimer() {

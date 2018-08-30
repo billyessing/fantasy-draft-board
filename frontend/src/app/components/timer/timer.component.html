@@ -1,4 +1,8 @@
 <div class="timer">
+  <!-- <div> 
+    <span *ngIf="playMusic"><img src="./../../assets/images/play-sound.mp3"></span>
+    <span *ngIf="!playMusic"><img src="./../../assets/images/stop-sound.mp3"></span>
+  </div> -->
   <span *ngIf="!timesUp"> {{ timeRemaining }} </span>
   <span *ngIf="timesUp"> 00:00 </span>
   <button *ngIf="!isRunning" mat-button (click)="startTimer()">Start</button>

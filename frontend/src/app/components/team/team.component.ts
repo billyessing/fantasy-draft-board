@@ -24,7 +24,7 @@ export class TeamComponent implements OnInit {
     'RB', 'RB',
     'WR', 'WR',
     'TE',
-    'FLEX',
+    'FLEX', 'FLEX',
     'K',
     'D/ST'
   ]
@@ -47,16 +47,14 @@ export class TeamComponent implements OnInit {
         this.showSpinner = true;
         this.teams = []
         this.getTeams();
-        setTimeout(() => this.showSpinner = false, 2500)
+        setTimeout(() => this.showSpinner = false, 2000)
 
         if (this.pickCounter % 12 == 0) {
           this.roundCounter++;
         }
         this.pickCounter++;
       })
-
   }
-
 
   getTeams() {
     this.dataService.getTeams()
@@ -86,7 +84,7 @@ export class TeamComponent implements OnInit {
       rb1: null, rb2: null,
       wr1: null, wr2: null,
       te: null,
-      flex: null,
+      flex1: null, flex2: null,
       k: null,
       dst: null,
       b1: null, b2: null,
@@ -97,28 +95,35 @@ export class TeamComponent implements OnInit {
     let rbCounter = 0
     let wrCounter = 0
 
+    players.sort((a, b) => a.rank - b.rank);
+
     players.forEach(player => {
       if (player.pos == 'QB' && positions.qb == null) {
         positions.qb = player
-      } else if (player.pos == 'RB' && rbCounter == 0) {
+      } else if (player.pos == 'RB' && positions.rb1 == null) {
         positions.rb1 = player
         rbCounter++;
-      } else if (player.pos == 'RB' && rbCounter == 1) {
+      } else if (player.pos == 'RB' && positions.rb2 == null) {
         positions.rb2 = player
         rbCounter++
-      } else if (player.pos == 'WR' && wrCounter == 0) {
+      } else if (player.pos == 'WR' && positions.wr1 == null) {
         positions.wr1 = player
         wrCounter++
-      } else if (player.pos == 'WR' && wrCounter == 1) {
+      } else if (player.pos == 'WR' && positions.wr2 == null) {
         positions.wr2 = player
         wrCounter++
       } else if (player.pos == 'TE' && positions.te == null) {
         positions.te = player
       } else if (player.pos == 'K' && positions.k == null) {
         positions.k = player
-      } else if (player.pos == 'RB' && player.pos != 'WR' && 
-                  player.pos != 'TE' && positions.flex == null) {
-        positions.flex = player
+      } else if ((player.pos == 'RB' || player.pos == 'WR' ||
+                  player.pos == 'TE') && positions.flex1 == null) {
+        console.log('aa')
+        positions.flex1 = player
+      } else if ((player.pos == 'RB' || player.pos == 'WR') 
+                  && positions.flex2 == null) {
+        console.log('bb')
+        positions.flex2 = player
       } else if (player.pos == 'DST' && positions.dst == null) {
         positions.dst = player
       } else if (positions.b1 == null) {

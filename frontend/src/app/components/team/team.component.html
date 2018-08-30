@@ -1,7 +1,6 @@
 <ng-container *ngIf="showSpinner">
   <mat-spinner class="spinner" color="warn"></mat-spinner>
   <br><br>
-  <!-- <hr style="width:15%"><br> -->
   <span *ngIf="currPlayer.name" class="spinner-text">Adding #{{ currPlayer.pos }} {{ currPlayer.name }} to {{ currTeamOwner.name }}'s team... </span>
   <span *ngIf="!currPlayer.name" class="spinner-text">Initializing database... </span>
 </ng-container>
@@ -11,10 +10,10 @@
   <mat-card class="example-card">
     <mat-card-header>
       <div mat-card-avatar style="margin-right: 40px;"><img [src]="getTeamImage(team.teamOwner.owner)"></div>
-      <mat-card-title>{{ team.teamOwner.name }}</mat-card-title>
+      <mat-card-title style="font-size: 22px; font-weight: bold">{{ team.teamOwner.name }}</mat-card-title>
       <mat-card-subtitle>{{ team.teamOwner.owner }}</mat-card-subtitle>
     </mat-card-header>
-    <br><br>
+    <br>
     <div class="row">
       <div style="width: 55px;">
         <p *ngFor="let pos of positions" style="width: 10px;">
@@ -31,7 +30,8 @@
         <p *ngIf="team.players.wr1; else empty">{{ team.players.wr1.name }} - ({{ team.players.wr1.bye }})</p>
         <p *ngIf="team.players.wr2; else empty">{{ team.players.wr2.name }} - ({{ team.players.wr2.bye }})</p>
         <p *ngIf="team.players.te; else empty">{{ team.players.te.name }} - ({{ team.players.te.bye }})</p>
-        <p *ngIf="team.players.flex; else empty">{{ team.players.flex.name }} - ({{ team.players.flex.bye }})</p>
+        <p *ngIf="team.players.flex1; else empty">{{ team.players.flex1.name }} - ({{ team.players.flex1.bye }})</p>
+        <p *ngIf="team.players.flex2; else empty">{{ team.players.flex2.name }} - ({{ team.players.flex2.bye }})</p>
         <p *ngIf="team.players.k; else empty">{{ team.players.k.name }} - ({{ team.players.k.bye }})</p>
         <p *ngIf="team.players.dst; else empty">{{ team.players.dst.name }} - ({{ team.players.dst.bye }})</p>
         <hr>
